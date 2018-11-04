@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="static/css/style.css" media="screen" title="no title" charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
+    <meta name="robots" content="noindex,follow" />
+  </head>
+  <body>
+    <div class="shopping-cart">
+      <!-- Title -->
+      <div class="title">
+        Shopping Bag
+      </div>
+
+      <!-- Product #1 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="static/css/item-1.png" alt="" />
+        </div>
+
+        <div class="description">
+          <span>Nasi Goreng</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="static/css/plus.svg" alt="" />
+          </button>
+          <input type="text" class = "text-field" name="name" value="0">
+          <button class="minus-btn" type="button" name="button">
+            <img src="static/css/minus.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="total-price">$549</div>
+      </div>
+
+      <!-- Product #2 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="static/css/item-2.png" alt=""/>
+        </div>
+
+        <div class="description">
+          <span>Martabak</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="static/css/plus.svg" alt="" />
+          </button>
+          <input type="text" class = "text-field" name="name" value="0">
+          <button class="minus-btn" type="button" name="button">
+            <img src="static/css/minus.svg" alt="" />
+          </button>
+        </div>
+
+        <div class="total-price">$870</div>
+      </div>
+
+      <!-- Product #3 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="static/css/item-3.png" alt="" />
+        </div>
+
+        <div class="description">
+          <span>Nasi Padang</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="static/css/plus.svg" alt="" />
+          </button>
+          <input type="text"  class = "text-field" name="name" value="0">
+          <button class="minus-btn" type="button" name="button">
+            <img src="static/css/minus.svg" alt="" />
+          </button>
+        </div>
+        <div class="total-price">$349</div>
+      </div>
+
+      <div class ="total">
+        <form id="payment-form" method="post" action="/checkouts/new">
+          <section>
+            <label for="amount">
+              <span class="input-label">Amount</span>
+              <div class="input-wrapper amount-wrapper">
+                <input id="amount" name="amount" type="text" min="1" value="0">
+                <input id="items" name="items" type="hidden" value="a">
+              </div>
+            </label>
+          </section>
+          <button class="button" type="submit" id="submit-button"><span>Check Out</span></button>
+        </form>
+      </div>
+    </div>
+
+<script type="text/javascript">
+      function updateCart(){
+        var $total;
+        var totalVal = 0;
+        $('.item').each(function(){
+             totalVal += parseInt($(this).find('.text-field').val()) * parseFloat($(this).find('.total-price').text().substring(1)) ; 
+        });
+        document.getElementById('amount').value = totalVal;
+
+        var itemnames = []
+        var itemqtys = []
+        $('.item').each(function(){
+            itemnames.push($(this).find('.description').text());
+            itemqtys.push($(this).find('.text-field').val());
+        });
+        var items = []
+        for (var i = 0; i < itemnames.length; i++) {
+          items[i] = [itemnames[i], parseInt(itemqtys[i])]
+        }
+        $('#items').val(JSON.stringify(items));
+        //$('#qtys').val(JSON.stringify(itemqtys));
+      }
+
+      $('.minus-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value > 1) {
+          value = value - 1;
+        } else {
+          value = 0;
+        }
+
+        $input.val(value);
+        updateCart();
+
+      });
+
+      $('.plus-btn').on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value < 100) {
+          value = value + 1;
+        } else {
+          value =100;
+        }
+
+        $input.val(value);
+        updateCart();
+      });
+
+
+
+      $('.like-btn').on('click', function() {
+        $(this).toggleClass('is-active');
+      });
+    </script>
+  </body>
+</html>
