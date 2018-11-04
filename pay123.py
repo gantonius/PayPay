@@ -126,12 +126,12 @@ def CreateMessage(sender, to, subject, msgHtml, msgPlain):
 
 
 def main():
-    to = "to"
-    sender = "from"
+    to = "to@gmail.com"
+    sender = "from@gmail.com"
     subject = "Your PayPay Order Confirmation"
     msgHtml = "Hi! Here is your order, enjoy!"
     msgPlain = "Your PayPay Order Confirmation"
-    SendMessage(sender, to, subject, msgHtml, msgPlain, 'OrderConfirmation.png')
+    SendMessage(sender, to, subject, msgHtml, msgPlain, 'tr.png')
 
 if __name__ == '__main__':
     main()
