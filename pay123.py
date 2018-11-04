@@ -126,34 +126,12 @@ def CreateMessage(sender, to, subject, msgHtml, msgPlain):
 
 
 def main():
-    # page = "http://0.0.0.0:4567/checkouts/"
-
-    # url = pyqrcode.create(page)
-    # url.png('yt.png', scale=8)
-
-    to = "gilbert.ichwan@gmail.com"
-    sender = "gilbert.ichwan@gmail.com"
+    to = "to"
+    sender = "from"
     subject = "paypay testing"
     msgHtml = "Hi<br/>Html Email"
     msgPlain = "Hi\nPlain Email"
-    # SendMessage(sender, to, subject, msgHtml, msgPlain)
-    # Send message with attachment:
     SendMessage(sender, to, subject, msgHtml, msgPlain, 'tr.png')
-
-# def test_main(tid):
-#     page = "http://0.0.0.0:4567/checkouts/" + str(tid)
-
-#     url = pyqrcode.create(page)
-#     url.png('yt.png', scale=8)
-
-#     to = "gilbert.ichwan@gmail.com"
-#     sender = "gilbert.ichwan@gmail.com"
-#     subject = "paypay testing"
-#     msgHtml = "Hi<br/>Html Email"
-#     msgPlain = "Hi\nPlain Email"
-#     # SendMessage(sender, to, subject, msgHtml, msgPlain)
-#     # Send message with attachment:
-#     SendMessage(sender, to, subject, msgHtml, msgPlain, 'yt.png')
 
 if __name__ == '__main__':
     main()
