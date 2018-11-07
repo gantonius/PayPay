@@ -12,7 +12,7 @@ import pyqrcode
 import png
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = 'mongodb://albert:al12345@ds151393.mlab.com:51393/paypay'
+app.config["MONGO_URI"] = '#ENTERMONGOUSER'
 mongo = PyMongo(app)
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
